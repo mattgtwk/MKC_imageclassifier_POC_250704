@@ -50,7 +50,7 @@ export default function ResultDisplay({ result }: ResultDisplayProps) {
     }
     
     if (typeof value === 'string') {
-      return <span className="text-green-700 dark:text-green-400">"{value}"</span>
+      return <span className="text-green-700 dark:text-green-400">{value}</span>
     }
     
     if (typeof value === 'number') {
@@ -88,19 +88,31 @@ export default function ResultDisplay({ result }: ResultDisplayProps) {
         </button>
       </div>
 
-      <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-4">
-        <div className="space-y-3">
-          {Object.entries(result).map(([key, value]) => (
-            <div key={key} className="border-b border-gray-200 dark:border-gray-700 pb-3 last:border-b-0">
-              <div className="font-medium text-gray-900 dark:text-white mb-1">
-                {key}
-              </div>
-              <div className="text-sm">
-                {renderValue(value)}
-              </div>
-            </div>
-          ))}
-        </div>
+      <div className="bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden">
+        <table className="w-full">
+          <thead className="bg-gray-100 dark:bg-gray-800">
+            <tr>
+              <th className="px-4 py-3 text-left text-sm font-medium text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700">
+                Field
+              </th>
+              <th className="px-4 py-3 text-left text-sm font-medium text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700">
+                Value
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {Object.entries(result).map(([key, value], index) => (
+              <tr key={key} className={index % 2 === 0 ? 'bg-white dark:bg-gray-900' : 'bg-gray-50 dark:bg-gray-800'}>
+                <td className="px-4 py-3 text-sm font-medium text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700">
+                  {key}
+                </td>
+                <td className="px-4 py-3 text-sm border-b border-gray-200 dark:border-gray-700">
+                  {renderValue(value)}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
 
       <details className="bg-gray-50 dark:bg-gray-900 rounded-lg p-4">

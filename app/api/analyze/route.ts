@@ -28,15 +28,16 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     }
 
     // Construct the full prompt with schema
+    const escapedSchema = JSON.stringify(parsedSchema, null, 2).replace(/"/g, '\\"')
     const fullPrompt = `${prompt}
 
-Please respond with a valid JSON object that matches this schema:
-${JSON.stringify(parsedSchema, null, 2)}
+Return your results using this schema:
+${escapedSchema}
 
 Ensure your response is ONLY valid JSON with no additional text or formatting.`
 
     const response = await openai.chat.completions.create({
-      model: 'gpt-4-vision-preview',
+      model: 'gpt-4o',
       messages: [
         {
           role: 'user',

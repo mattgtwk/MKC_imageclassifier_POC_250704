@@ -38,8 +38,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     return NextResponse.json({
       url: blob.url,
       pathname: blob.pathname,
-      size: blob.size,
-      uploadedAt: blob.uploadedAt,
     })
   } catch (error) {
     console.error('Upload error:', error)
