@@ -31,8 +31,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const escapedSchema = JSON.stringify(parsedSchema, null, 2).replace(/"/g, '\\"')
     const fullPrompt = `${prompt}
 
-Return your results using this schema:
-${escapedSchema}
+<OUTPUT> Always respond in JSON according to this schema: ${escapedSchema}</OUTPUT>
 
 Ensure your response is ONLY valid JSON with no additional text or formatting.`
 

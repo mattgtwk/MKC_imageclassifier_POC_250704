@@ -9,7 +9,7 @@ interface PromptFormProps {
 }
 
 export default function PromptForm({ onAnalyze, isAnalyzing }: PromptFormProps) {
-  const [prompt, setPrompt] = useState('Please examine the image below and provide a detailed description using the following five dimensions—background, content, colours, theme, and layout—in a format that conforms exactly to the MultiDimensionalObjectDescription JSON schema. Be precise and thorough in each dimension.')
+  const [prompt, setPrompt] = useState('<ROLE>You are an expert in analysing images</ROLE><TASK>Describe the image below and respond in the format required</TASK>')
   const [schema, setSchema] = useState(`{
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "MultiDimensionalObjectDescription",
